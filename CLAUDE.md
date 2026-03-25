@@ -80,7 +80,7 @@ Crear/editar `.vscode/tasks.json` en tu proyecto:
       "command": "powershell",
       "args": [
         "-ExecutionPolicy", "Bypass", "-Command",
-        "$f = \"$env:USERPROFILE\\.claude\\hooks\\tts-enabled\"; if (Test-Path $f) { Remove-Item $f; Write-Host 'VOZ DESACTIVADA' } else { 'on' | Set-Content $f; Write-Host 'VOZ ACTIVADA' }"
+        "$f = \"$env:USERPROFILE\\.claude\\hooks\\tts-enabled\"; if (Test-Path $f) { Remove-Item $f; [System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms') | Out-Null; [System.Windows.Forms.MessageBox]::Show('Voz DESACTIVADA','Elvira',[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Information) | Out-Null } else { 'on' | Set-Content $f; [System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms') | Out-Null; [System.Windows.Forms.MessageBox]::Show('Voz ACTIVADA','Elvira',[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Information) | Out-Null }"
       ],
       "problemMatcher": [],
       "presentation": {
@@ -178,7 +178,7 @@ En `tts-response.py`, parametro `--rate`:
 
 ## Activar y desactivar
 
-- **Ctrl+Shift+H** = toggle (crea/borra el archivo `tts-enabled`)
+- **Ctrl+Shift+H** = toggle con popup de confirmacion ("Voz ACTIVADA" / "Voz DESACTIVADA")
 - Manual ON: `echo on > ~/.claude/hooks/tts-enabled`
 - Manual OFF: `rm ~/.claude/hooks/tts-enabled`
 
