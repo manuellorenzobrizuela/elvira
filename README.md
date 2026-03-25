@@ -151,4 +151,4 @@ MIT
 
 ## Author
 
-Built for hands-free coding with Claude Code.
+Manuel Lorenzo
